@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link 
+ rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="style.css">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Track Your Expenses</h1>
+        <div class="section-1">
+            <div class="balance">
+                <p>SEE YOUR BALANCE</p>
+                <p id="balance-value">$0</p>
+            </div>
+            <div class="income-expense">
+                <div>
+                    <p>INCOME</p>
+                    <p id="income-value">$20000</p>
+                </div>
+                <span class="line-span"></span>
+                <div>
+                    <p>EXPENDITURE</p>
+                    <p id="expense-value">$1110</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-2">
+            <p>ADD A NEW TRANSACTION</p>
+            <form action="" >
+                <label for="name">Name:</label>
+                <input type="text" id="name">
+                <label for="Date">Date:</label>
+                <input type="date" id="date">
+                <Label for="amount">Amount:</Label>
+                <input type="number" id="amount">
+            </form>
+            <div class="section-2-btn"> 
+                <button id="add-income">ADD TO INCOME</button>
+                <button id="add-expenses">ADD TO EXPENSES</button>
+            </div>
+        </div>
+        <div class="section-3">
+            <p class="trasaction-history">TRANSACTION HISTORY</p>
+            <div class="title">
+                <div>
+                    <h3 class="transaction-name">Name</h3>
+                </div>
+                <div>
+                    <h3 class="date">Date</h3>
+                </div>
+                <div>
+                    <h3 class="amount">Amount</h3>
+                </div>
+                <div>
+                    <span></span>
+                </div>
+            </div> 
+            
+            <ul id="trans-history-container"></ul>
+            
+        </div>
+    </div>
+    
+
+       
+    <script src="script.js"></script>
+
+
+</body>
+</html>

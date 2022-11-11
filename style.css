@@ -1,0 +1,147 @@
+:root {
+    --primary: #f3f3f3;
+    --dark: #000;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    line-height: 1.7;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+h1 {
+    text-align: center;
+    margin-bottom: 1.7rem;
+}
+.section-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.section-1 p {
+    font-weight: 600;
+}
+.section-1 .income-expense {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    border: 2px solid grey;
+    padding: 1rem 1.3rem;
+}
+#income-value {
+    color: rgb(2, 142, 2);
+}
+#expense-value {
+   color: rgb(255, 3, 3);
+}
+.section-1 .income-expense .line-span {
+    border-right: 2px solid rgb(130, 127, 127);
+}
+.section-2 p {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+#name {
+    width: 92.6%;
+    height: 25px;
+    height: 30px;
+    margin-bottom: 1rem;
+    outline: none;
+    border: 1px solid rgb(180, 173, 173);;
+    padding: 0.75rem;
+}
+#date {
+    width: 39.5%;
+    height: 30px;
+    margin-right: 0.5rem;
+    outline: none;
+    border: 1px solid rgb(180, 173, 173);
+    padding: 0.75rem;
+}
+
+#amount {
+    width: 43.4%;
+    height: 30px;
+    outline: none;
+    border: 1px solid rgb(180, 173, 173);
+    padding: 0.75rem;
+}
+.section-2-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 1rem 0 2rem  0;
+    gap: 20px;
+}
+#add-income {
+    padding: 0.45rem 0.75rem;
+    background:rgb(2, 142, 2);
+    color: #fff;
+    border: none;
+}
+#add-expenses {
+    padding: 0.45rem 0.6rem;
+    background:rgb(164, 4, 4);
+    color: #fff;
+    border: none;
+}
+.section-3 p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+.section-3 .title {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    border: 1px solid rgb(180, 173, 173);
+}
+
+/* Javascript Styling */
+
+.section-3 ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+   
+}
+.section-3 li {
+    list-style: none;
+    border: 1px solid rgb(168, 160, 160);
+    background: rgb(229, 225, 225);
+    text-align: center;
+}
+#trans-history-container ul .expenseAmt {
+    background: red;
+}
+#trans-history-container ul .incomeAmt {
+    background: red;
+    color: red;
+}
+li button {
+    border: none;
+}
+li button:hover {
+    background: rgb(255, 29, 29);
+    color: #f3f3f3;
+}
+.closeSection  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-3 .deleteButton {
+    padding: 0.25rem 1rem;
+}
