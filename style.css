@@ -53,7 +53,7 @@ h1 {
     font-weight: 500;
     margin-bottom: 1rem;
 }
-#name {
+#name-input {
     width: 92.6%;
     height: 25px;
     height: 30px;
@@ -62,7 +62,7 @@ h1 {
     border: 1px solid rgb(180, 173, 173);;
     padding: 0.75rem;
 }
-#date {
+#date-input {
     width: 39.5%;
     height: 30px;
     margin-right: 0.5rem;
@@ -71,7 +71,7 @@ h1 {
     padding: 0.75rem;
 }
 
-#amount {
+#amount-input {
     width: 43.4%;
     height: 30px;
     outline: none;
@@ -91,7 +91,7 @@ h1 {
     color: #fff;
     border: none;
 }
-#add-expenses {
+#add-expense {
     padding: 0.45rem 0.6rem;
     background:rgb(164, 4, 4);
     color: #fff;
@@ -122,26 +122,12 @@ h1 {
     border: 1px solid rgb(168, 160, 160);
     background: rgb(229, 225, 225);
     text-align: center;
+    margin-top: 12px;
 }
-#trans-history-container ul .expenseAmt {
-    background: red;
-}
-#trans-history-container ul .incomeAmt {
-    background: red;
-    color: red;
-}
-li button {
-    border: none;
-}
+
+
 li button:hover {
     background: rgb(255, 29, 29);
     color: #f3f3f3;
 }
-.closeSection  {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.section-3 .deleteButton {
-    padding: 0.25rem 1rem;
-}
+
