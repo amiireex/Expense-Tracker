@@ -4,10 +4,10 @@ const state = {
     income: 7000, 
     expenditure: 600, 
     transactionsHistory: [
-        {historyName: "Salary", date: "20-03-2022", amount: 3000, addIncome: true},
-        {historyName: "Outing", date: "22-07-2022", amount: 200, addExpense: false},
-        {historyName: "Hospital", date: "10-03-2022", amount: 500, addExpense: false},
-        {historyName: "Allowance", date: "10-03-2022", amount: 1000, addIncome: true}
+        {historyName: "Salary", date: "20-03-2022", amount: 3000, transType: true},
+        {historyName: "Outing", date: "22-07-2022", amount: 200, transType: false},
+        {historyName: "Hospital", date: "10-03-2022", amount: 500, transType: false},
+        {historyName: "Allowance", date: "10-03-2022", amount: 1000, transType: true}
         
     ]
 };
@@ -26,124 +26,107 @@ const addIncomeBtn = document.querySelector("#add-income");
 const addExpenseBtn = document.querySelector("#add-expense");
 
 let init = () => {
-    updatedState();
-    updatedListener()
+    addToEventListener()
+    updatedHistory()
+   
 };
 
-let updatedListener = () => {
-    addIncomeBtn.addEventListener("click", addToIncome);
-    addExpenseBtn.addEventListener("click", addToExpense);
-}
-
+let addToEventListener = () => {
+    addIncomeBtn.addEventListener("click", addToIncome)
+    addExpenseBtn.addEventListener("click", addToExpense)
+};
 
 let addToIncome = () => {
-    
-    let dateValue = dateInput.value
-    let amountValue = amountInput.value
-    amountInput.value = ""
-    dateInput.value = "" 
-
-
-    let transactionHistory = {
-            historyName: nameInput.value,
-            date: dateValue,
-            amount: amountValue,
-            addIncome: true
-    };
-    state.transactionsHistory.push(transactionHistory)
-    console.log(state);
-    updatedState();
-};
+    addToTransactions(nameInput.value, dateInput.value, amountInput.value, true)
+}
 
 let addToExpense = () => {
-    let dateValue = dateInput.value
-    let amountValue = amountInput.value
-    amountInput.value = ""
-    dateInput.value = ""
-
-    let transactionHistory = {
-            historyName: nameInput.value,
-            date: dateValue,
-            amount: amountValue,
-            addExpense: false
-    };
-    state.transactionsHistory.push(transactionHistory)
-    console.log(state);
-    updatedState();
-
-    console.log("hello expensses");
+    addToTransactions(nameInput.value, dateInput.value, amountInput.value, false)
 };
 
-let updatedState = () => {
-   let  income = 0,
-        expenditure = 0,
-        balance = 0
-         
-         let historyItem; 
-         transHistoryContainer.innerHTML = ""
+let addToTransactions = (historyName, date, amount, transType) => {
+    
 
-         for (let i = 0; i < state.transactionsHistory.length; i++) {
-           historyItem = state.transactionsHistory
-            if (historyItem[i].addIncome === true) {
-                income += historyItem[i].amount
-            } else if (historyItem[i].addExpense === false){
-                expenditure += historyItem[i].amount
-            }
-            
-         }
-         balance = income - expenditure
+    if (historyName === "" || amount === "" || date === ""){
+        nameInput.style.border = "2px solid red"
+        dateInput.style.border = " 2px solid red"
+        amountInput.style.border = " 2px solid red"
+    } else {
+        let transaction = {
+            historyName: historyName,
+            date: date,
+            amount: amount,
+            transType: transType
+        };
+        state.transactionsHistory.push(transaction);
 
-         state.balance =  balance
-         state.income =  income
-         state.expenditure =  expenditure
+    updatedHistory();
+    }; 
+    
+}
 
-         transactions()
+let updatedHistory = () => {
+    let balance = 0,
+        income = 0,
+        expenditure = 0;
+        for (let i = 0; i < state.transactionsHistory.length; i++) {
+            let historyItem = state.transactionsHistory;
+
+            if (historyItem[i].transType === true) {
+                income += historyItem[i].amount;
+            } else if (historyItem[i].transType === false) {
+                expenditure += historyItem[i].amount;
+            };
+
+        };
+        balance = income - expenditure
+
+        state.balance = balance;
+        state.income = income;
+        state.expenditure = expenditure;
+  
+        console.log(balance, income, expenditure);
+        
+        transactions()
 };
 
 let transactions = () => {
     
-    balanceEl.innerText =   `$${state.balance}`
-    incomeEl.innerText = `$${state.income}`
-    expenditureEl.innerText = `$${state.expenditure}`
+    balanceEl.innerHTML =   `$${state.balance}`
+    incomeEl.innerHTML = `$${state.income}`
+    expenditureEl.innerHTML = `$${state.expenditure}`;
 
-    let nameContainerEl, transNameEl, historyItems, dateContainerEl, transDateEl, amountContainerEl,
-    transAmountEl, deleteContainerEl, deleteBtnEl
+    let transNameEl, historyItems, transDateEl, transAmountEl, deleteContainerEl, deleteBtnEl
 
-    historyItems = state.transactionsHistory
+    transHistoryContainer.innerHTML = "";
 
-    for (let i = 0; i < historyItems.length; i++) {
-
-        
-        nameContainerEl = document.createElement("div")
-
+    for (let i = 0; i < state.transactionsHistory.length; i++) {
+        historyItems = state.transactionsHistory;
         // Name cell
         transNameEl = document.createElement("li")
         transNameEl.append(historyItems[i].historyName)
         
-        nameContainerEl.appendChild(transNameEl)
-        transHistoryContainer.appendChild(nameContainerEl)
+        transHistoryContainer.appendChild(transNameEl)
 
         // Date Cell
-        dateContainerEl = document.createElement("div")
+        
         transDateEl = document.createElement("li")
         transDateEl.append(historyItems[i].date)
-        dateContainerEl.appendChild(transDateEl)
-        transHistoryContainer.appendChild(transDateEl)
+        transHistoryContainer.appendChild(transDateEl);
         
         // Amount Cell
-        amountContainerEl = document.createElement("div")
+
         transAmountEl = document.createElement("li")
-        if (historyItems[i].addIncome === true){
+        if (historyItems[i].transType === true){
            transAmountEl.style.backgroundColor = "rgb(2, 142, 2)"
            transAmountEl.style.color = "#ffff"
-        } else if (historyItems[i].addExpense === false){
+        } else if (historyItems[i].transType === false){
             transAmountEl.style.backgroundColor = "rgb(184, 9, 4)"
             transAmountEl.style.color = "#ffff"
         }
         
         transAmountEl.innerText = `$${historyItems[i].amount}`
-        amountContainerEl.appendChild(transAmountEl)
-        transHistoryContainer.appendChild(amountContainerEl);
+        transHistoryContainer.appendChild(transAmountEl);
 
         // Delete Button
         deleteContainerEl = document.createElement("li")
@@ -155,21 +138,15 @@ let transactions = () => {
         deleteContainerEl.appendChild(deleteBtnEl)
         transHistoryContainer.appendChild(deleteContainerEl)
         
-        deleteContainerEl.style.display = "flex"
-        deleteContainerEl.style.justifyContent = "center"
-        deleteContainerEl.style.alignItems = "center"
-        deleteBtnEl.style.padding = "0.25rem 1rem"
-        deleteBtnEl.style.border= "none"
+        deleteContainerEl.style.display = "flex";
+        deleteContainerEl.style.justifyContent = "center";
+        deleteContainerEl.style.alignItems = "center";
+        deleteBtnEl.style.padding = "0.25rem 1rem";
+        deleteBtnEl.style.border= "none";
 
-        deleteBtnEl.addEventListener("click", () => {
-            nameContainerEl.remove()
-            dateContainerEl.innerText =""
-            console.log("hello world");
-        })
-    }
+    };
 
     
 };
 
-
-init()
+init();
