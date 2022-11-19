@@ -55,14 +55,14 @@ let addToTransactions = (historyName, date, amount, transType) => {
         let transaction = {
             historyName: historyName,
             date: date,
-            amount: amount,
+            amount: parseInt(amount),
             transType: transType
         };
         state.transactionsHistory.push(transaction);
 
-    updatedHistory();
+        updatedHistory();
     }; 
-    
+
 }
 
 let updatedHistory = () => {
@@ -75,7 +75,7 @@ let updatedHistory = () => {
             if (historyItem[i].transType === true) {
                 income += historyItem[i].amount;
             } else if (historyItem[i].transType === false) {
-                expenditure += historyItem[i].amount;
+               expenditure += historyItem[i].amount;
             };
 
         };
@@ -96,17 +96,21 @@ let transactions = () => {
     incomeEl.innerHTML = `$${state.income}`
     expenditureEl.innerHTML = `$${state.expenditure}`;
 
-    let transNameEl, historyItems, transDateEl, transAmountEl, deleteContainerEl, deleteBtnEl
+    let nameContainerEl, transNameEl, historyItems, transDateEl, transAmountEl, deleteContainerEl, deleteBtnEl
 
     transHistoryContainer.innerHTML = "";
 
     for (let i = 0; i < state.transactionsHistory.length; i++) {
         historyItems = state.transactionsHistory;
+
+        nameContainerEl = document.createElement("div")
+        
         // Name cell
         transNameEl = document.createElement("li")
         transNameEl.append(historyItems[i].historyName)
         
         transHistoryContainer.appendChild(transNameEl)
+        
 
         // Date Cell
         
@@ -144,6 +148,11 @@ let transactions = () => {
         deleteBtnEl.style.padding = "0.25rem 1rem";
         deleteBtnEl.style.border= "none";
 
+        deleteBtnEl.addEventListener("click", (event) => {
+            // transHistoryContainer.remove()
+            // transNameEl.style.display = "none"
+            console.log(event);
+        } )
     };
 
     
