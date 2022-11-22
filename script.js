@@ -4,10 +4,10 @@ const state = {
     income: 7000, 
     expenditure: 600, 
     transactionsHistory: [
-        {historyName: "Salary", date: "20-03-2022", amount: 3000, transType: true},
-        {historyName: "Outing", date: "22-07-2022", amount: 200, transType: false},
-        {historyName: "Hospital", date: "10-03-2022", amount: 500, transType: false},
-        {historyName: "Allowance", date: "10-03-2022", amount: 1000, transType: true}
+        { id: idTag(), historyName: "Salary", date: "20-03-2022", amount: 3000, transType: true},
+        { id: idTag(), historyName: "Outing", date: "22-07-2022", amount: 200, transType: false},
+        { id: idTag(),historyName: "Hospital", date: "10-03-2022", amount: 500, transType: false},
+        { id: idTag(),historyName: "Allowance", date: "10-03-2022", amount: 1000, transType: true}
         
     ]
 };
@@ -31,6 +31,10 @@ let init = () => {
    
 };
 
+function idTag () {
+    return Math.floor(Math.random() * 1000000);
+}
+
 let addToEventListener = () => {
     addIncomeBtn.addEventListener("click", addToIncome)
     addExpenseBtn.addEventListener("click", addToExpense)
@@ -53,6 +57,7 @@ let addToTransactions = (historyName, date, amount, transType) => {
         amountInput.style.border = " 2px solid red"
     } else {
         let transaction = {
+            id: idTag(),
             historyName: historyName,
             date: date,
             amount: parseInt(amount),
@@ -61,10 +66,25 @@ let addToTransactions = (historyName, date, amount, transType) => {
         state.transactionsHistory.push(transaction);
 
         updatedHistory();
+
+        nameInput.value = ""
+        amountInput.value = ""
+        dateInput.value = ""
     }; 
 
 }
-
+function onDeleteClick (event){
+    const id = parseInt(event.target.getAttribute("data-id"))
+    let deleteIndex;
+    for (let i = 0; i < state.transactionsHistory[i].length; i++) {
+       if (state.transactionsHistory[i].id === id){
+            deleteIndex = i
+            break;
+       }
+    }
+    state.transactionsHistory.splice(deleteIndex, 1)
+    updatedHistory()
+}
 let updatedHistory = () => {
     let balance = 0,
         income = 0,
@@ -91,8 +111,7 @@ let updatedHistory = () => {
 };
 
 let transactions = () => {
-    
-    balanceEl.innerHTML =   `$${state.balance}`
+    balanceEl.innerHTML = `$${state.balance}`
     incomeEl.innerHTML = `$${state.income}`
     expenditureEl.innerHTML = `$${state.expenditure}`;
 
@@ -137,7 +156,10 @@ let transactions = () => {
         
 
         deleteBtnEl = document.createElement("button")
+        deleteBtnEl.setAttribute("data-id", historyItems[i].id)
         deleteBtnEl.innerText = "X"
+        
+        deleteBtnEl.addEventListener("click", onDeleteClick) 
         
         deleteContainerEl.appendChild(deleteBtnEl)
         transHistoryContainer.appendChild(deleteContainerEl)
@@ -147,15 +169,8 @@ let transactions = () => {
         deleteContainerEl.style.alignItems = "center";
         deleteBtnEl.style.padding = "0.25rem 1rem";
         deleteBtnEl.style.border= "none";
+  
+    }
+}
 
-        deleteBtnEl.addEventListener("click", (event) => {
-            // transHistoryContainer.remove()
-            // transNameEl.style.display = "none"
-            console.log(event);
-        } )
-    };
-
-    
-};
-
-init();
+init()
