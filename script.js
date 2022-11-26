@@ -1,15 +1,9 @@
 
-const state = {
+let state = {
     balance: 6000,
     income: 7000, 
     expenditure: 600, 
-    transactionsHistory: [
-        { id: idTag(), historyName: "Salary", date: "20-03-2022", amount: 3000, transType: true},
-        { id: idTag(), historyName: "Outing", date: "22-07-2022", amount: 200, transType: false},
-        { id: idTag(),historyName: "Hospital", date: "10-03-2022", amount: 500, transType: false},
-        { id: idTag(),historyName: "Allowance", date: "10-03-2022", amount: 1000, transType: true}
-        
-    ]
+    transactionsHistory: []
 };
 
 
@@ -26,9 +20,13 @@ const addIncomeBtn = document.querySelector("#add-income");
 const addExpenseBtn = document.querySelector("#add-expense");
 
 let init = () => {
-    addToEventListener()
-    updatedHistory()
-   
+    let localStorageState = JSON.parse(localStorage.getItem("incomeAndExpenseTracker"))
+
+    if(localStorageState !== null) {
+       state = localStorageState
+    }
+    updatedHistory();
+    addToEventListener();
 };
 
 function idTag () {
@@ -66,19 +64,17 @@ let addToTransactions = (historyName, date, amount, transType) => {
         state.transactionsHistory.push(transaction);
 
         updatedHistory();
-
-        nameInput.value = ""
-        amountInput.value = ""
-        dateInput.value = ""
-    }; 
-
+    }
+        nameInput.value = "";
+        amountInput.value = "";
+        dateInput.value = "";
 }
 function onDeleteClick (event){
     const id = parseInt(event.target.getAttribute("data-id"))
     let deleteIndex;
     for (let i = 0; i < state.transactionsHistory[i].length; i++) {
        if (state.transactionsHistory[i].id === id){
-            deleteIndex = i
+            deleteIndex = i;
             break;
        }
     }
@@ -104,8 +100,9 @@ let updatedHistory = () => {
         state.balance = balance;
         state.income = income;
         state.expenditure = expenditure;
-  
-        console.log(balance, income, expenditure);
+
+        // Storing the Transaction
+        localStorage.setItem("incomeAndExpenseTracker", JSON.stringify(state))
         
         transactions()
 };

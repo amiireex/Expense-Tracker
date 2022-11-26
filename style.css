@@ -132,3 +132,130 @@ li button:hover {
     color: #f3f3f3;
 }
 
+
+@media (width <= 300px) {
+    .container {
+        margin: 4% 10%;
+    }
+    h1 {
+        font-size: 0.9rem;
+    }
+    .section-1 p{
+        font-size: 0.7rem;
+    }
+    .section-1 .income-expense {
+        
+        gap: 10px;
+        border: 2px solid grey;
+        padding: 0.8rem 0.9rem;
+    }
+    .section-2 p {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 1.3rem 0 0.5rem 0;
+    }
+    label {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    #amount-input,
+    #name-input,
+    #date-input {
+        width: 100%;
+        height: 30px;
+        margin: 0;
+    } 
+    #add-income,
+    #add-expense {
+        font-size: 0.7rem;
+        font-weight: 550;
+    }
+    .section-3 p {
+        font-size: 1rem;
+    }
+    .section-3 .title {
+        font-size: 0.8rem;
+    }
+    /* javascript button styling */
+    .section-3 li {
+       font-size: 0.7rem;
+    }
+    li button:hover {
+        background: rgb(255, 29, 29);
+        color: #f3f3f3;
+    }
+    li button {
+        font-size: 0.7rem;
+    }
+}
+@media (300px < width <= 500px) {
+    .container {
+        margin: 4% 10%;
+    }
+    h1 {
+        font-size: 1rem;
+    }
+    .section-1 p{
+        font-size: 0.8rem;
+    }
+    .section-1 .income-expense {
+        gap: 20px;
+        padding: 0.9rem 1rem;
+    }
+    .section-2 p {
+        font-size: 0.9rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    #amount-input,
+    #name-input,
+    #date-input {
+        width: 100%;
+        height: 30px;
+        margin: 0;
+    } 
+    #add-income,
+    #add-expense {
+        font-size: 0.7rem;
+        font-weight: 550;
+    }
+    .section-3 p {
+        font-size: 1rem;
+    }
+    .section-3 .title {
+        font-size: 0.8rem;
+    }
+    .section-3 li {
+       font-size: 0.9rem;
+    }
+    li button:hover {
+        background: rgb(255, 29, 29);
+        color: #f3f3f3;
+    }
+    li button {
+        font-size: 0.7rem;
+    }
+
+}
+@media (500px < width <= 992px) {
+    .container {
+        margin: 4% 10%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    #amount-input,
+    #name-input,
+    #date-input {
+        width: 100%;
+        height: 30px;
+        margin: 0;
+    } 
+    .section-3 li {
+        font-size: 1rem;
+     }
+}
