@@ -139,7 +139,7 @@ li button:hover {
 
 @media  (200px <= width <= 450px)  {
     .container {
-        margin: 4% 10%;
+        margin: 4% 20%;
     }
     h1{
         font-size: 1rem;
@@ -151,14 +151,12 @@ li button:hover {
         gap: 25px;
     }
     .section-1 .income-expense {
-        padding: 0.8rem 0.6rem;
+        padding: 0.8rem 1rem;
     }
     .section-2 p {
         font-size: 0.9rem;
     }
-    #add-income {
-        display: inline-block;
-    }
+
     label {
         font-size: 1rem;
     }
